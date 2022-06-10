@@ -19,4 +19,4 @@ jobs:
           server: ftp.inplayo.com
           username: u909986447.demo
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /aframe/switch_vr_and_page/
+          server-dir: /aframe/switch-vr-and-page/
