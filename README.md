@@ -16,7 +16,7 @@ with switching view context, without page reload.
 
 [Demo Website](https://demo.inplayo.com/aframe/switch-vr-and-page/)
 
-```bash
+```html
 <a-entity open-page-iframe="url:https://inplayo.com/;event:click;"></a-entity>
 ```
 
