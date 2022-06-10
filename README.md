@@ -22,6 +22,8 @@ with switching view context, without page reload.
 
 [Demo page](https://demo.inplayo.com/aframe/switch-vr-and-page/)
 
+
+Demo video
 [![Demo Video](https://img.youtube.com/vi/GwYH4lUYU_8/0.jpg)](https://www.youtube.com/watch?v=GwYH4lUYU_8 "Demo Video")
 
 ## Badges
