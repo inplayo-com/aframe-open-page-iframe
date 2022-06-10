@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inplayo.com – Switch VR & Page</title>
+
+    <link rel="apple-touch-icon" sizes="57x57"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage"
+        content="https://inplayo.com/wp-content/themes/inplayo/assets/images/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.min.css">
+
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script
+        src="https://unpkg.com/aframe-environment-component@1.3.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="aframe-open-page-iframe.js"></script>
+</head>
+
+<body>
+    <div id="preloader" class="preloader preloader-entry">
+        <div class="content">
+            <div class="loader">
+                <img src="https://inplayo.com/wp-content/themes/inplayo/assets/images/logo/inplayo.svg" alt="logo">
+                <div>loading application</div>
+            </div>
+        </div>
+    </div>
+    <a-scene environment renderer="antialias: true; colorManagement: true;" camera-position cursor="rayOrigin: mouse"
+        raycaster="far: 100; objects: .raycastable;">
+        <a-assets>
+            <img response-type="arraybuffer" id="inplayoTex" src="assets/images/inplayo.png">
+            <img response-type="arraybuffer" id="shopTex" src="assets/images/shop-now.png">
+
+            <a-mixin id="panel" material="shader:flat;transparent:true;" position="0 1.25 0" look-at="[camera]">
+            </a-mixin>
+        </a-assets>
+
+        <!-- camera & controls -->
+        <a-entity id="rig" movement-controls="constrainToNavMesh: true">
+            <a-entity camera position="0 1.6 0" look-controls>
+            </a-entity>
+            <a-entity id="leftHand" laser-controls="hand: left" raycaster="far: 100; objects: .raycastable;"></a-entity>
+            <a-entity id="rightHand" laser-controls="hand: right" raycaster="far: 100; objects: .raycastable;">
+            </a-entity>
+        </a-entity>
+
+        <a-entity id="description" position="0 6 -6">
+            <a-text value="SWITCHING BETWEEN VIEW CONTEXT" align="center"></a-text>
+            <a-plane position="0 -1 0" color="#1D1E2C" width="5" height="1">
+                <a-text position="-2 0 0.01" align="left"
+                    value="clicking on image will produce\nswitching between view context,\nand opening page url in iframe">
+                </a-text>
+            </a-plane>
+            <a-plane position="0 -2.1 0" color="#6A8D92" width="5" height="1">
+                <a-text position="-2 0 0.01" align="left"
+                    value="usefull case for integrating external\nfull-functional web pages, or view web\n applications without scene reload">
+                </a-text>
+            </a-plane>
+        </a-entity>
+
+        <a-entity id="panels" position="0 0.5 -4">
+            <a-box position="-1 0 0">
+                <a-plane mixin="panel" material="src:#inplayoTex;" class="raycastable"
+                    animation__scaleUp="startEvents:mouseenter; property: scale; to: 1.2 1.2 1.2; dur: 250;"
+                    animation__scaleDown="startEvents:mouseleave; property: scale; to: 1 1 1; dur: 250;"
+                    open-page-iframe="url:https://inplayo.com/"></a-plane>
+            </a-box>
+
+            <a-box position="1 0 0">
+                <a-plane mixin="panel" material="src:#shopTex;" class="raycastable"
+                    animation__scaleUp="startEvents:mouseenter; property: scale; to: 1.2 1.2 1.2; dur: 250;"
+                    animation__scaleDown="startEvents:mouseleave; property: scale; to: 1 1 1; dur: 250;"
+                    open-page-iframe="url:https://metadeveloper.gumroad.com/"></a-plane>
+            </a-box>
+        </a-entity>
+    </a-scene>
+    <script src="assets/js/script.js"></script>
+
+
+
+
+    <!-- github corner -->
+    <a href="https://github.com/inplayo-com/aframe-open-page-iframe" target="_blank" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <!-- end github corner -->
+</body>
+
+</html>

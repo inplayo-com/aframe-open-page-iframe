@@ -1,0 +1,22 @@
+name: 🚀 Deploy website on push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ftp.inplayo.com
+          username: u909986447.demo
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /aframe/switch_vr_and_page/
